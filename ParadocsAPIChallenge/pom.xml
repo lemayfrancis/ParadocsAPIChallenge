@@ -15,7 +15,10 @@
 	<description>Create a basic REST API based on requirements in less than 2 days</description>
 
 	<properties>
+		<!-- general -->
 		<java.version>13</java.version>
+		<exec-maven.version>1.2.1</exec-maven.version>
+        <main-class>com.lemayfrancis.ParadocsAPIChallenge.ParadocsApiChallengeApplication</main-class>
 	</properties>
 
 	<dependencies>
@@ -39,10 +42,20 @@
 
 	<build>
 		<plugins>
+			<!-- rest api -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--main on exec-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven.version}</version>
+                <configuration>
+                    <mainClass>${main-class}</mainClass>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
