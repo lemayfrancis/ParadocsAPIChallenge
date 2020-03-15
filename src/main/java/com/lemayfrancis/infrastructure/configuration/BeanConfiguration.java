@@ -3,6 +3,8 @@ package com.lemayfrancis.infrastructure.configuration;
 import com.lemayfrancis.Main;
 import com.lemayfrancis.domain.Lift.ILiftRepository;
 import com.lemayfrancis.domain.Lift.LiftService;
+import com.lemayfrancis.domain.Lodge.ILodgeRepository;
+import com.lemayfrancis.domain.Lodge.LodgeService;
 import com.lemayfrancis.domain.SkiResort.ISkiResortRepository;
 import com.lemayfrancis.domain.SkiResort.SkiResortService;
 import com.lemayfrancis.domain.Trail.ITrailRepository;
@@ -23,6 +25,11 @@ public class BeanConfiguration {
   @Bean
   LiftService liftService(final ILiftRepository liftRepository) {
     return new LiftService(liftRepository);
+  }
+
+  @Bean
+  LodgeService lodgeService(final ILodgeRepository lodgeRepository) {
+    return new LodgeService(lodgeRepository);
   }
 
   @Bean
