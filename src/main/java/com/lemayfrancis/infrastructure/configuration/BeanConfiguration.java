@@ -1,6 +1,8 @@
 package com.lemayfrancis.infrastructure.configuration;
 
 import com.lemayfrancis.Main;
+import com.lemayfrancis.domain.Lift.ILiftRepository;
+import com.lemayfrancis.domain.Lift.LiftService;
 import com.lemayfrancis.domain.Trail.ITrailRepository;
 import com.lemayfrancis.domain.Trail.TrailService;
 import org.springframework.context.annotation.Bean;
@@ -14,5 +16,10 @@ public class BeanConfiguration {
   @Bean
   TrailService trailService(final ITrailRepository trailRepository) {
     return new TrailService(trailRepository);
+  }
+
+  @Bean
+  LiftService liftService(final ILiftRepository liftRepository) {
+    return new LiftService(liftRepository);
   }
 }
