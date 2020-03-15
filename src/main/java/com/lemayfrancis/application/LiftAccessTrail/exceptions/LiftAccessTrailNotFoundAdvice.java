@@ -1,4 +1,4 @@
-package com.lemayfrancis.application.Lift.exceptions;
+package com.lemayfrancis.application.LiftAccessTrail.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class LiftNotFoundAdvice {
+public class LiftAccessTrailNotFoundAdvice {
   @ResponseBody
-  @ExceptionHandler(LiftNotFoundException.class)
+  @ExceptionHandler(LiftAccessTrailNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String liftNotFoundHandler(LiftNotFoundException ex) {
+  String liftAccessTrailNotFoundHandler(LiftAccessTrailNotFoundException ex) {
     return ex.getMessage();
   }
 }

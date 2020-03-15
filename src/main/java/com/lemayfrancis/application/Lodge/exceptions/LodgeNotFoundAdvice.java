@@ -11,7 +11,7 @@ public class LodgeNotFoundAdvice {
   @ResponseBody
   @ExceptionHandler(LodgeNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String trailNotFoundHandler(LodgeNotFoundException ex) {
+  String lodgeNotFoundHandler(LodgeNotFoundException ex) {
     return ex.getMessage();
   }
 }
