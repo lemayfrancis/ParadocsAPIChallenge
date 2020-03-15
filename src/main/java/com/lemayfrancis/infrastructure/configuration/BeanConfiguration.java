@@ -3,6 +3,8 @@ package com.lemayfrancis.infrastructure.configuration;
 import com.lemayfrancis.Main;
 import com.lemayfrancis.domain.Lift.ILiftRepository;
 import com.lemayfrancis.domain.Lift.LiftService;
+import com.lemayfrancis.domain.SkiResort.ISkiResortRepository;
+import com.lemayfrancis.domain.SkiResort.SkiResortService;
 import com.lemayfrancis.domain.Trail.ITrailRepository;
 import com.lemayfrancis.domain.Trail.TrailService;
 import org.springframework.context.annotation.Bean;
@@ -21,5 +23,11 @@ public class BeanConfiguration {
   @Bean
   LiftService liftService(final ILiftRepository liftRepository) {
     return new LiftService(liftRepository);
+  }
+
+  @Bean
+  SkiResortService skiResortService(
+      final ISkiResortRepository skiResortRepository, final ILiftRepository liftRepository) {
+    return new SkiResortService(skiResortRepository, liftRepository);
   }
 }
