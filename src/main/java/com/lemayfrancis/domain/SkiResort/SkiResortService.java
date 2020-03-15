@@ -1,7 +1,7 @@
 package com.lemayfrancis.domain.SkiResort;
 
 import com.lemayfrancis.domain.Lift.ILiftRepository;
-import com.lemayfrancis.domain.Lift.Lift;
+import com.lemayfrancis.domain.Lodge.ILodgeRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,11 +10,15 @@ public class SkiResortService implements ISkiResortService {
 
   private ISkiResortRepository skiResortRepository;
   private ILiftRepository liftRepository;
+  private ILodgeRepository lodgeRepository;
 
   public SkiResortService(
-      ISkiResortRepository skiResortRepository, ILiftRepository liftRepository) {
+      ISkiResortRepository skiResortRepository,
+      ILiftRepository liftRepository,
+      ILodgeRepository lodgeRepository) {
     this.skiResortRepository = skiResortRepository;
     this.liftRepository = liftRepository;
+    this.lodgeRepository = lodgeRepository;
   }
 
   @Override
@@ -28,12 +32,12 @@ public class SkiResortService implements ISkiResortService {
   }
 
   @Override
-  public SkiResort createSkiResort(SkiResort newSkiResort, List<Lift> lifts) {
+  public SkiResort createSkiResort(SkiResort newSkiResort) {
     skiResortRepository.save(newSkiResort);
-    lifts.forEach(
-        lift -> {
-          liftRepository.save(lift);
-        });
+
+    newSkiResort.getLifts().forEach(lift -> liftRepository.save(lift));
+
+    newSkiResort.getLodges().forEach(lodge -> lodgeRepository.save(lodge));
 
     Optional<SkiResort> resort = skiResortRepository.findById(newSkiResort.getIdResort());
 
@@ -48,12 +52,10 @@ public class SkiResortService implements ISkiResortService {
             resort -> {
               resort.setName(newSkiResort.getName());
               resort.setDescription(newSkiResort.getDescription());
-              resort
-                  .getLifts()
-                  .forEach(
-                      lift -> {
-                        liftRepository.save(lift);
-                      });
+              resort.setLifts(newSkiResort.getLifts());
+              resort.setLodges(newSkiResort.getLodges());
+              resort.getLifts().forEach(lift -> liftRepository.save(lift));
+              resort.getLodges().forEach(lodge -> lodgeRepository.save(lodge));
               skiResortRepository.save(resort);
               return resort;
             })
@@ -66,6 +68,7 @@ public class SkiResortService implements ISkiResortService {
                       lift -> {
                         liftRepository.save(lift);
                       });
+              newSkiResort.getLodges().forEach(lodge -> lodgeRepository.save(lodge));
               skiResortRepository.save(newSkiResort);
               return newSkiResort;
             });

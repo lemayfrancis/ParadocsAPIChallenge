@@ -1,6 +1,5 @@
 package com.lemayfrancis.domain.SkiResort;
 
-import com.lemayfrancis.domain.Lift.Lift;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,7 +9,7 @@ public interface ISkiResortService {
 
   public List<SkiResort> findAll();
 
-  public SkiResort createSkiResort(SkiResort resort, List<Lift> lifts);
+  public SkiResort createSkiResort(SkiResort resort);
 
   public SkiResort updateSkiResort(UUID id, SkiResort resort);
 

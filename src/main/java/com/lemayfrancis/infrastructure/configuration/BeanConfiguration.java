@@ -34,7 +34,9 @@ public class BeanConfiguration {
 
   @Bean
   SkiResortService skiResortService(
-      final ISkiResortRepository skiResortRepository, final ILiftRepository liftRepository) {
-    return new SkiResortService(skiResortRepository, liftRepository);
+      final ISkiResortRepository skiResortRepository,
+      final ILiftRepository liftRepository,
+      final ILodgeRepository lodgeRepository) {
+    return new SkiResortService(skiResortRepository, liftRepository, lodgeRepository);
   }
 }

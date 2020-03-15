@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.lemayfrancis.domain.Lift.ILiftRepository;
+import com.lemayfrancis.domain.Lodge.ILodgeRepository;
 import com.lemayfrancis.domain.SkiResort.ISkiResortRepository;
 import com.lemayfrancis.domain.SkiResort.SkiResort;
 import com.lemayfrancis.domain.SkiResort.SkiResortService;
@@ -22,11 +23,12 @@ public class SkiResortServiceTest {
   private ISkiResortRepository repository;
   private ILiftRepository liftRepository;
   private SkiResortService underTest;
+  private ILodgeRepository lodgeRepository;
 
   @BeforeEach
   void setUp() {
     repository = mock(ISkiResortRepository.class);
-    underTest = new SkiResortService(repository, liftRepository);
+    underTest = new SkiResortService(repository, liftRepository, lodgeRepository);
   }
 
   @Test
@@ -88,7 +90,7 @@ public class SkiResortServiceTest {
     SkiResort newSkiResort = createSkiResort();
     when(repository.findById(any(UUID.class))).thenReturn(Optional.of(newSkiResort));
 
-    SkiResort result = underTest.createSkiResort(newSkiResort, newSkiResort.getLifts());
+    SkiResort result = underTest.createSkiResort(newSkiResort);
 
     verify(repository).save(any(SkiResort.class));
   }
@@ -98,7 +100,7 @@ public class SkiResortServiceTest {
     SkiResort newSkiResort = createSkiResort();
     when(repository.findById(any(UUID.class))).thenReturn(Optional.of(newSkiResort));
 
-    SkiResort result = underTest.createSkiResort(newSkiResort, newSkiResort.getLifts());
+    SkiResort result = underTest.createSkiResort(newSkiResort);
 
     assertEquals(newSkiResort.getIdResort(), result.getIdResort());
   }
@@ -133,6 +135,7 @@ public class SkiResortServiceTest {
   }
 
   private SkiResort createSkiResort() {
-    return new SkiResort(UUID.randomUUID(), "name", "description", new ArrayList<>());
+    return new SkiResort(
+        UUID.randomUUID(), "name", "description", new ArrayList<>(), new ArrayList<>());
   }
 }

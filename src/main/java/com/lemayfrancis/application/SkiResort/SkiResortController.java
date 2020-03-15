@@ -56,7 +56,7 @@ public class SkiResortController {
 
   @PostMapping()
   ResponseEntity<?> newSkiResort(@RequestBody SkiResort newSkiResort) {
-    SkiResort resort = skiResortService.createSkiResort(newSkiResort, newSkiResort.getLifts());
+    SkiResort resort = skiResortService.createSkiResort(newSkiResort);
 
     return ResponseEntity.created(
             linkTo(methodOn(SkiResortController.class).one(resort.getIdResort())).toUri())
