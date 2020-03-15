@@ -1,9 +1,5 @@
-package com.lemayfrancis.application.Trail;
+package com.lemayfrancis.domain.Trail;
 
-import com.lemayfrancis.application.Trail.exceptions.TrailNotFoundException;
-import com.lemayfrancis.domain.Trail.ITrailRepository;
-import com.lemayfrancis.domain.Trail.ITrailService;
-import com.lemayfrancis.domain.Trail.Trail;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -31,11 +27,7 @@ public class TrailService implements ITrailService {
 
     Optional<Trail> trail = trailRepository.findById(newTrail.getIdTrail());
 
-    if (trail.isEmpty()) {
-      throw new TrailNotFoundException(newTrail.getIdTrail().toString());
-    }
-
-    return trail.get();
+    return trail.orElse(null);
   }
 
   @Override
@@ -58,11 +50,7 @@ public class TrailService implements ITrailService {
 
     Optional<Trail> trail = trailRepository.findById(id);
 
-    if (trail.isEmpty()) {
-      throw new TrailNotFoundException(newTrail.getIdTrail().toString());
-    }
-
-    return trail.get();
+    return trail.orElse(null);
   }
 
   @Override

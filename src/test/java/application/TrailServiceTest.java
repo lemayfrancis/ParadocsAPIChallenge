@@ -6,9 +6,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.lemayfrancis.application.Trail.TrailService;
 import com.lemayfrancis.domain.Trail.ITrailRepository;
 import com.lemayfrancis.domain.Trail.Trail;
+import com.lemayfrancis.domain.Trail.TrailService;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
