@@ -19,6 +19,9 @@ mvn exec:java
 ```
 Use the default port 8080.
 
+### Swagger Doc
+Go to www.localhost:8080/swagger-ui.html.
+
 ### Run tests
 ```$xslt
 mvn test
